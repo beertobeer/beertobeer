@@ -1,0 +1,21 @@
+<div class="beer">
+	<%- name %> <% if (degree != null) { %><span class="degree"><%= degree %>°</span><% } %><br />
+	<span class="prices">
+		<% _.each(_.where(prix, { pression: pression }), function (oneprice, key, list) { 
+			if (key == list.length-1) { %>
+				<span class="price lastPrice">
+			<% } else { %>
+				<span class="price">
+			<% } %>
+				<span class="volume"><%= oneprice.volume %> cl</span>
+				<%= oneprice.prixNormal %> €
+				<% if (oneprice.prixNormal > oneprice.prixHappyHour) { %>
+					/ <%= oneprice.prixHappyHour %> €
+				<% } %>
+			</span>
+		<% }); %>
+	</span>
+	<div class="pull-right">
+		<a href="#" class="editBeerLink" id="<%= id %>">Modifier</a>
+	</div>
+</div>

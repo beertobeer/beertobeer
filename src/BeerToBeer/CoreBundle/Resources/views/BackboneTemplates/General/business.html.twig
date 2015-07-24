@@ -1,0 +1,23 @@
+<div class="col-xs-10 bar">
+    <span class="nom"><%- nom %></span> 
+    <span class="type">
+    	<%= typeArray[type] %>
+    </span>
+
+    <br>
+    <span class="adress"><%= distance %> m - <%- adresse %>, <%= codePostal %> <%- ville %></span>
+</div>
+<% if (app.AppView.BusinessesView.collection.forAdd) { %>
+	<div class="col-xs-2 prix">
+		<% if (typeof beers != "undefined" && !_.isEmpty(beers)) { %>
+			OK
+		<% } else { %>
+			<a href="#business/<%= id %>" class="addThisBusiness">Ajouter</a>
+		<% } %>
+	</div>
+<% } else { %>
+	<div class="col-xs-2 prix">
+	    <span class="prixHappyHour">€ <%= prixHappyHour %></span><br>
+	    <span class="prixNow"><%= prixNow %></span>
+	</div>
+<% } %>

@@ -1,0 +1,23 @@
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+# Composer
+composer.phar
+bin/security-checker
+bin/security-checker.bat
+composer.lock
+app/check.php
+app/SymfonyRequirements.php
+composer.lock
+app/check.php

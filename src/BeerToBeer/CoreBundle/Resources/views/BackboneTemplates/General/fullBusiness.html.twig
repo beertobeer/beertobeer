@@ -1,0 +1,101 @@
+<div class="fullBusiness" id="<%= this.model.attributes.id %>">
+	<% if (app.AppView.BusinessesView.collection.length > 1) { // Seulement si une page recherche a déjà été chargée %>
+		<div class="leftBack"></div>
+	<% } %>
+	<h1><%- this.model.attributes.nom %></h1>
+	<h2><%= this.model.attributes.typeArray[this.model.attributes.type] %></h2>
+
+	<div class="container">
+		<div class="row">
+			{# <div class="horaires col-xs-12">
+				<div class="today pull-left">
+					<% 
+					var nowTime = (new Date).getTime();
+					var day = (new Date).getDay(); 
+					var horaires = this.model.attributes.horaires;
+					if (typeof horaires[day] != 'undefined') {
+						var ouvert = false;
+						_.each(horaires[day].normal, function(horaire) {
+							if (nowTime >= horaire.ouverture.getTime() && nowTime <= horaire.fermeture.getTime()) {
+								ouvert = true;
+								%>
+								Ouvert de <%= horaire.ouverture.getHours() %>:<% var minutes = horaire.ouverture.getMinutes();
+								if (minutes < 10) { %>0<%= minutes %><% } else { %><%= minutes %><% } %>
+								à <%= horaire.fermeture.getHours() %>:<% var minutes = horaire.fermeture.getMinutes();
+								if (minutes < 10) { %>0<%= minutes %><% } else { %><%= minutes %><% } 
+							}
+						});
+						if (!ouvert) { %>
+							Fermé
+						<% }
+					} else { %>
+						Inconnu
+					<% } %>
+				</div>
+				<div class="more pull-right" id="dropHoraires">
+					<span class="caretHoraires">Horaires <span class="caret"></span></span>
+				</div>
+				<div class="moreHoraires" style="display: none;">
+						<div class="row typeHoraires">
+							<div class="pull-left ouverture dropHorairesType focus">
+								Ouverture
+							</div>
+							<div class="pull-right happyHour dropHorairesType">
+								Happy-hour
+							</div>
+						</div>
+						<div class="horairesDays" id="horairesContainer">
+						</div>
+					</div>
+			</div>#}
+		</div>
+
+		<div class="row">
+			<div class="location col-xs-12">
+				<div class="adresse pull-left" id="adressBusiness">
+					<%- this.model.attributes.adresse %><br>
+					<%= this.model.attributes.codePostal %> <%- this.model.attributes.ville %>
+				</div>
+				<div class="whereIsIt pull-right">
+					<button type="button" class="btn btn-default btnFullBusiness">C'est où ?</button>
+					<button type="button" class="btn btn-default btnFullBusiness" style="display: none;">Bières</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="beers">
+			<div id="noBeers" style="display: none;">
+				<img src="{{ asset('bundles/beertobeercore/images/nobeers.png') }}" alt="Pas de bières"><br><br>
+				L'établissement sera dans Beer To Beer dès qu'une bière aura été ajoutée<br><br>
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</div>
+			<% 
+				var pressions = _.where(this.model.attributes.beers, {pression: true});
+				var others = _.where(this.model.attributes.beers, {pression: false});
+			%>
+			<div class="type">
+				<div class="pull-left type">
+					<span id="link_pressions">Pressions (<span>0</span>)</span>
+				</div>
+				<div class="pull-right type">
+					<a href="#"><span id="link_others">Canettes et bouteilles (<span>0</span>)</span></a>
+				</div>
+			</div>
+			<div id="beers_container">
+			</div>
+			<div class="btnsBeer">
+				<button type="button" class="btn btn-default" id="btnAddBeer">Ajouter une bière</button>
+			</div>
+		</div>
+	</div>
+	<div id="mapFullBusiness" style="display: none;">
+	</div>
+	<div id="btnsMap" style="display: none;">
+		<button type="button" class="btn btn-default" id="btnCopyAdress">Copier l'adresse</button>
+	</div>
+
+	<script>
+		// Ceci est l'URL de l'image du markerBusiness.png, on la donne ici pour qu'elle puisse être générée par Symfony
+		var markerBusinessUrl = "{{ asset("bundles/beertobeercore/images/markerBusiness.png") }}";
+	</script>
+</div>

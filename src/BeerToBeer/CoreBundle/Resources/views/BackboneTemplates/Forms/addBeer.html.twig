@@ -1,0 +1,51 @@
+<div class="addBeer formBeer">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<label for="beerNameInput">Choisir la bière à ajouter</label>
+				<input type="text" placeholder="Nom de la bière" class="form-control" id="beerNameInput">
+			</div>
+		</div>
+
+		<div class="row labelPrix">
+			<div class="col-xs-12">
+				Prix (en euros)
+			</div>
+		</div>
+
+		<div class="row" id="changeType">
+			<div class="col-xs-5">
+				<span class="current">Pressions</span>
+			</div>
+			<div class="col-xs-7">
+				<a href="#"><span>Canettes et bouteilles</span></a>
+			</div>
+		</div>
+
+		<form id="formAddBeers">
+			<div class="row typeTarif">
+				<div class="col-xs-offset-3 col-xs-3">
+					Tarif normal
+				</div>
+				<div class="col-xs-3">
+					Happy-Hour
+				</div>
+			</div>
+			<div id="BeerBusinesses_container">
+				<% var oneBeerTemplate = _.template($("#oneBeerBusinessForm").html()); %>
+				<div class="pressions">
+					<%= oneBeerTemplate({
+						id: -1
+					}) %>
+				</div>
+				<div class="others" style="display: none;">
+				</div>
+			</div>
+			<a href="#" id="addVolumeBeer">+ Ajouter un volume</a>
+		</form>
+	</div>
+	<div class="buttons">
+		<button class="btn btn-default submit" id="submitBeers">Ajouter la bière</button>
+		<a href="#" id="cancelBeers" class="cancel">Annuler</a>
+	</div> 
+</div>
